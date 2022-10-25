@@ -18,7 +18,7 @@ function Form() {
 
           <Input
             label="Email"
-            type="text"
+            type="email"
             placeholder="Enter email"
             name="email"
             id="email"
