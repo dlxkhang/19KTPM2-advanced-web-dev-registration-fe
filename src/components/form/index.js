@@ -77,7 +77,7 @@ function Form() {
 
         <div className="container sign-in">
           <p>
-            Already have an account? <a href="#">Sign in</a>.
+            Already have an account? <a href="/#">Sign in</a>.
           </p>
         </div>
       </form>
