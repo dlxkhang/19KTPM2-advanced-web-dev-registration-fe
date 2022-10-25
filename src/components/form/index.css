@@ -3,14 +3,19 @@
 }
 
 .form-wrapper {
-    border-top: 10px solid #1046c7;
+    background-color: #21be94;
+    
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
     padding: 16px;
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
 }
 
 

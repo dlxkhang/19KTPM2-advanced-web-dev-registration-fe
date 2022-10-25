@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import Input from "../input";
 import "./index.css";
 
@@ -7,10 +8,35 @@ function Form() {
   const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [hasError, setHasError] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (password !== passwordConfirm) {
+      setHasError(true);
+      return;
+    } else setHasError(false);
+
+    const payload = {
+      email,
+      fullName,
+      password,
+    };
+    try {
+      const res = await axios.post(
+        "https://registration-be.deta.dev/auth/register",
+        payload
+      );
+      alert("Created account successfully");
+    } catch (err) {
+      if (err.response) alert(err.response.data);
+    }
+  };
 
   return (
     <div className="form-wrapper">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="container">
           <h1>Register</h1>
           <p>Please fill in this form to create an account.</p>
@@ -66,7 +92,7 @@ function Form() {
             onChange={(e) => {
               setPasswordConfirm(e.target.value);
             }}
-            error={password !== passwordConfirm}
+            error={hasError}
           />
           <hr />
 
