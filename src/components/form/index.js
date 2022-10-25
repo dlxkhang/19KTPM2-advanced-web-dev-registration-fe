@@ -24,7 +24,7 @@ function Form() {
       password,
     };
     try {
-      const res = await axios.post(
+      await axios.post(
         "https://registration-be.deta.dev/auth/register",
         payload
       );
