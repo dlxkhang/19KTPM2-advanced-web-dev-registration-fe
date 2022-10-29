@@ -24,11 +24,11 @@ function Form() {
       password,
     };
     try {
-      await axios.post(
-        "https://registration-be.deta.dev/auth/register",
+      const res = await axios.post(
+        "https://registration-be.vercel.app/auth/register",
         payload
       );
-      alert("Created account successfully");
+      if (res.data) alert("Created account successfully");
     } catch (err) {
       if (err.response) alert(err.response.data);
     }
