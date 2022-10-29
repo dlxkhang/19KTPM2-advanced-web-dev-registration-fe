@@ -24,8 +24,12 @@ function Form() {
       password,
     };
     try {
+      const baseUrl =
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:3300"
+          : "https://registration-be.vercel.app";
       const res = await axios.post(
-        "https://registration-be.vercel.app/auth/register",
+        `${baseUrl}/auth/register`,
         payload
       );
       if (res.data) alert("Created account successfully");
