@@ -4,31 +4,25 @@ function Input({
   label,
   type,
   placeholder,
-  name,
   id,
-  required,
-  value,
-  onChange,
+  formHook,
   error,
 }) {
   return (
     <div className="input-wrapper">
-      <label htmlFor={name}>
+      <label>
         <b>{label}</b>
       </label>
       <input
         type={type}
         placeholder={placeholder}
-        name={name}
         id={id}
-        required={required}
-        value={value}
-        onChange={onChange}
+        {...formHook}
         style={error ? { marginBottom: 0 } : {}}
       />
       {error && (
         <div className="password-not-match-error">
-          <p>Re-enter password does not match</p>
+          <p>{error}</p>
         </div>
       )}
     </div>

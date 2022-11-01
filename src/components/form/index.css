@@ -2,6 +2,26 @@
     box-sizing: border-box
 }
 
+.error-wrapper {
+    width: 100%;
+}
+
+.error-text {
+    color: red;
+    margin: 0;
+    font-size: 13px;
+}
+
+.success-wrapper {
+    width: 100%;
+}
+
+.success-text {
+    color: green;
+    margin: 0;
+    font-size: 13px;
+}
+
 .form-wrapper {
     background-color: #21be94;
     

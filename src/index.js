@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 import './index.css';
 import Form from './components/form';
 
+const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Form/>
+    <QueryClientProvider client={queryClient}>
+      <Form />
+    </QueryClientProvider>
   </React.StrictMode>
 );
