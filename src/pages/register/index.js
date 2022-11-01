@@ -2,12 +2,15 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Input from "../input";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Input from "../../components/input";
 import registerValidationSchema from "../../validations/register.schema";
 import "./index.css";
-import { useEffect } from "react";
 
-function Form() {
+function Register() {
+  const navigate = useNavigate();
+  
   const {
     register,
     handleSubmit,
@@ -48,7 +51,7 @@ function Form() {
   
   return (
     <div className="form-wrapper">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="container">
           <h1>Register</h1>
           <p>Please fill in this form to create an account.</p>
@@ -105,9 +108,13 @@ function Form() {
           </button>
         </div>
 
-        <div className="container sign-in">
+        <div className="container login">
           <p>
-            Already have an account? <a href="/#">Sign in</a>.
+            Already have an account?{" "}
+            <span onClick={() => navigate("/login")}>
+              <b>Login</b>
+            </span>
+            .
           </p>
         </div>
       </form>
@@ -115,4 +122,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default Register;

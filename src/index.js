@@ -4,15 +4,34 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import './index.css';
-import Form from './components/form';
+import Login from "./pages/login";
+import Register from './pages/register';
+import Home from "./pages/home";
+import ErrorPage from './pages/error-page';
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+]);
 const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <Form />
+      <RouterProvider router={router} />
     </QueryClientProvider>
   </React.StrictMode>
 );

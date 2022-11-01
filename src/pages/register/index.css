@@ -23,8 +23,16 @@
 }
 
 .form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #21be94;
-    
+    width: 100%;
+    min-height: 100%;
+}
+
+.form {
+    width: 100%;
 }
 
 .container {
@@ -62,9 +70,11 @@ hr {
 
 a {
     color: dodgerblue;
+    cursor: pointer,
 }
 
-.sign-in {
+.login {
     background-color: #f1f1f1;
     text-align: center;
+    cursor: pointer,
 }
