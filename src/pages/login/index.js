@@ -27,7 +27,6 @@ function Login() {
       onSuccess: (data) => {
         if (data) {
           const user = data.data;
-          console.log(user);
           localStorage.setItem("session", JSON.stringify(user.session));
           navigate("/");
         }
