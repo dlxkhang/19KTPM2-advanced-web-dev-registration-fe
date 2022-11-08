@@ -1,12 +1,12 @@
-import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/input";
-import registerValidationSchema from "../../validations/register.schema";
+import registerValidationSchema from "./validation/register.schema";
 import "./index.css";
+import instance from "../../service/public-api";
 
 function Register() {
   const navigate = useNavigate();
@@ -33,11 +33,7 @@ function Register() {
   };
 
   const { mutate, data, isSuccess, error } = useMutation((registerFormData) => {
-    const baseUrl =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3300"
-        : "https://registration-be.vercel.app";
-    return axios.post(`${baseUrl}/auth/register`, registerFormData);
+    return instance.post('/auth/register', registerFormData);
   });
 
   useEffect(() => {
@@ -56,7 +52,7 @@ function Register() {
           <h1>Register</h1>
           <p>Please fill in this form to create an account.</p>
           <hr />
-          {error && error.response.status === 409 && (
+          {error && error.response && error.response.status === 409 && (
             <div className="error-wrapper">
               <p className="error-text">Email already exist</p>
             </div>

@@ -10,6 +10,7 @@ import Login from "./pages/login";
 import Register from './pages/register';
 import Home from "./pages/home";
 import ErrorPage from './pages/error-page';
+import Profile from './pages/profile';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 const queryClient = new QueryClient();

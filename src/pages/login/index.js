@@ -1,11 +1,11 @@
-import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../../components/input";
-import loginValidationSchema from "../../validations/login.schema";
+import loginValidationSchema from "./validation/login.schema";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
+import instance from "../../service/public-api";
 
 function Login() {
   const navigate = useNavigate();
@@ -27,8 +27,8 @@ function Login() {
       onSuccess: (data) => {
         if (data) {
           const user = data.data;
-          localStorage.setItem("token", user.token);
-          localStorage.setItem("fullName", user.fullName);
+          console.log(user);
+          localStorage.setItem("session", JSON.stringify(user.session));
           navigate("/");
         }
       },
@@ -36,11 +36,7 @@ function Login() {
   };
 
   const { mutate, error } = useMutation((loginFormData) => {
-    const baseUrl =
-      process.env.NODE_ENV === "development"
-        ? process.env.REACT_APP_DEV_BASE_URL
-        : process.env.REACT_APP_PROD_BASE_URL;
-    return axios.post(`${baseUrl}/auth/login`, loginFormData);
+    return instance.post('/auth/login', loginFormData);
   });
 
   return (
@@ -49,9 +45,9 @@ function Login() {
         <div className="container">
           <h1>Login</h1>
           <hr />
-          {error && error.response.status === 400 && (
+          {error && error.response && error.response.status === 401 && (
             <div className="error-wrapper">
-              <p className="error-text">{error.response.data}</p>
+              <p className="error-text">Wrong username or password</p>
             </div>
           )}
           <Input

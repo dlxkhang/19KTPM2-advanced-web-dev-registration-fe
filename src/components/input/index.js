@@ -5,6 +5,7 @@ function Input({
   type,
   placeholder,
   id,
+  isDisable,
   formHook,
   error,
 }) {
@@ -19,6 +20,7 @@ function Input({
         id={id}
         {...formHook}
         style={error ? { marginBottom: 0 } : {}}
+        disabled={isDisable}
       />
       {error && (
         <div className="password-not-match-error">

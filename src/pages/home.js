@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const navigate = useNavigate();
   useEffect(() => {
-    if (!localStorage.getItem("token")) navigate("/login");
-  }, [localStorage.getItem("token")]);
+    if (!localStorage.getItem("session")) navigate("/login");
+  }, [localStorage.getItem("session")]);
 
   return (
     <div
@@ -19,7 +19,22 @@ export default function Home() {
       }}
     >
       <h1>Welcome to home page!</h1>
-      <h4>{localStorage.getItem("fullName")}</h4>
+      <button
+        style={{
+          backgroundColor: "#1046c7",
+          color: "white",
+          padding: "16px 20px",
+          margin: "8px 0",
+          border: "none",
+          cursor: "pointer",
+          opacity: 0.9,
+        }}
+        onClick={() => {
+          navigate("/profile");
+        }}
+      >
+        Profile
+      </button>
       <button
         style={{
           backgroundColor: "#1046c7",
@@ -32,7 +47,7 @@ export default function Home() {
         }}
         className="logout-btn"
         onClick={() => {
-          localStorage.clear();
+          localStorage.removeItem('session');
           navigate("/login");
         }}
       >
